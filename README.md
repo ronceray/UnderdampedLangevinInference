@@ -27,7 +27,7 @@ Developed in Python 3.6. Dependencies:
 
 -----------------------------------------------------------------------
 
-###Contents:
+**Contents**:
 
 **StochasticInertialForceInference.py**: a front-end includer of all classes
    useful to the user.

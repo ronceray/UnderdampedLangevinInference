@@ -5,7 +5,7 @@ UnderdampedLangevinInference is a package aimed at inferring the
 deterministic and stochastic contributions of underdamped stochastic processes (underdamped Langevin dynamics). 
 
 **Reference**: 
-    David Br\"uckner, Pierre Ronceray and Chase Broedersz, 
+    David Brückner, Pierre Ronceray and Chase Broedersz, 
     "*Inferring the dynamics of underdamped stochastic systems*", 2020.
     https://arxiv.org/abs/2002.06680
 

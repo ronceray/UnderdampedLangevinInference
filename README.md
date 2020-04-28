@@ -1,14 +1,15 @@
-# StochasticInertialForceInference	
+# UnderdampedLangevinInference	
 
 
-StochasticInertialForceInference is a package aimed at inferring the 
-deterministic and stochastic contributions of stochastic inertial processes (underdamped Langevin dynamics). 
+UnderdampedLangevinInference is a package aimed at inferring the 
+deterministic and stochastic contributions of underdamped stochastic processes (underdamped Langevin dynamics). 
 
 **Reference**: 
-    David Brückner, Pierre Ronceray and Chase Broedersz, 
-    "*Inferring the non-linear dynamics of stochastic inertial systems*", 2020.
+    David Br\"uckner, Pierre Ronceray and Chase Broedersz, 
+    "*Inferring the dynamics of underdamped stochastic systems*", 2020.
+    https://arxiv.org/abs/2002.06680
 
-**Authors**: Pierre Ronceray and David Brückner. 
+**Authors**: Pierre Ronceray and David Br\"uckner. 
 
 **Contact**: pierre.ronceray@outlook.com or d.brueckner@campus.lmu.de
 
@@ -27,42 +28,42 @@ Developed in Python 3.6. Dependencies:
 
 -----------------------------------------------------------------------
 
-**Contents**:
+###Contents:
 
-**StochasticInertialForceInference.py**: a front-end includer of all classes
+**UnderdampedLangevinInference**: a front-end includer of all classes
    useful to the user.
 
-**SIFI_data.py**: contains a data wrapper class, StochasticTrajectoryData,
+**ULI_data.py**: contains a data wrapper class, StochasticTrajectoryData,
    which formats trajectories for force and diffusion inference. Also
    contains a number of plotting routines. See this file for the different ways to
    initialize it using data.
 
-**SIFI_inference.py**: implements the core force and diffusion
-   inference class, StochasticInertialForceInference, that reconstructs the
+**ULI_inference.py**: implements the core force and diffusion
+   inference class, UnderdampedLangevinInference, that reconstructs the
    these fields and computes the inference error on the force field.  
    Takes as input a StochasticTrajectoryData instance, and inference parameters.
 
-**SIFI_langevin.py**: contains the class UnderdampedLangevinProcess, which
+**ULI_langevin.py**: contains the class UnderdampedLangevinProcess, which
    implements a simple Ito integration of the second order Langevin equation, useful
    for testing the method with known models. It takes as input a force
    field and a diffusion tensor field. Also used by
-   StochasticInertialForceInference to predict new trajectories with the
+   UnderdampedLangevinInference to predict new trajectories with the
    inferred force and diffusion field.
 
-**SIFI_projectors.py**: implements an internal class, TrajectoryProjectors,
-   used by StochasticInertialForceInference. Given a
+**ULI_projectors.py**: implements an internal class, TrajectoryProjectors,
+   used by UnderdampedLangevinInference. Given a
    set of fitting functions, it orthonormalizes it as a premise to the
    inference.
 
-**SIFI_bases.py**: provides an internal dictionary of (more or less)
+**ULI_bases.py**: provides an internal dictionary of (more or less)
    standard fitting bases, such as polynomials. This dictionary is
-   called by StochasticInertialForceInference at
+   called by UnderdampedLangevinInference at
    initialization, unless a custom base is provided by the user.
 
-**SIFI_plotting_toolkit.py**: a few plotting functions for the convenience
+**ULI_plotting_toolkit.py**: a few plotting functions for the convenience
    of the author.
 
-**SIFI_demo_VdP.py**: a fully commented example of force and diffusion
+**ULI_demo_VdP.py**: a fully commented example of force and diffusion
    inference on the example of 1D non-linear oscillator. **Start here!**	       
    
 -----------------------------------------------------------------------

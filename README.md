@@ -9,7 +9,7 @@ deterministic and stochastic contributions of underdamped stochastic processes (
     "*Inferring the dynamics of underdamped stochastic systems*", 2020.
     https://arxiv.org/abs/2002.06680
 
-**Authors**: Pierre Ronceray and David Br\"uckner. 
+**Authors**: Pierre Ronceray and David Brückner. 
 
 **Contact**: pierre.ronceray@outlook.com or d.brueckner@campus.lmu.de
 

@@ -13,6 +13,8 @@ def basis_selector(basis,data):
         funcs = polynomial_basis(data.d,basis['order'])
     elif basis['type'] == 'Fourier':
         funcs = Fourier_basis(data.d,basis['width_x'],basis['width_v'],basis['center'],basis['order'])
+    elif basis['type'] == 'fourierX_polyV':
+        funcs = fourierX_polyV_basis(data.d,basis['center_x'],basis['width_x'],basis['order_x'],basis['order_v'])
     else: # Interacting particles basis
         is_interacting = True
         if basis['type'] == 'particles_pair_interaction': 
@@ -134,6 +136,57 @@ def Fourier_basis(dim,width_x,width_v,center,order):
         return vals 
     return Fourier 
 
+def fourierX_polyV_basis(dim,center_x,width_x,order_x,order_v):
+    
+    def polyV_basis(dim,order):
+        coeffs = [ np.array([[]],dtype=int) ]
+        for n in range(order):
+                # Generate the next coefficients:
+                new_coeffs = []
+                for c in coeffs[-1]: 
+                    # We generate loosely ordered lists of coefficients
+                    # (c1 >= c2 >= c3 ...)  (avoids redundancies):
+                    for i in range( (c[-1]+1) if c.shape[0]>0 else dim ):
+                        new_coeffs.append(list(c)+[i])
+                coeffs.append(np.array(new_coeffs,dtype=int)) 
+        # Group all coefficients together
+        coeffs = [ c for degree in coeffs for c in degree ] 
+        return lambda V : np.array([[ np.prod(v[c]) for c in coeffs ] for v in V]) 
+
+    def fourierX_basis(dim,order,center,width):
+        coeffs = [ np.array([[]],dtype=int) ]
+        for n in range(order):
+                # Generate the next coefficients:
+                new_coeffs = []
+                for c in coeffs[-1]:
+                    # We generate loosely ordered lists of coefficients
+                    # (c1 >= c2 >= c3 ...)  (avoids redundancies):
+                    for i in range( (c[-1]+1) if c.shape[0]>0 else dim ):
+                        new_coeffs.append(list(c)+[i])
+                coeffs.append(np.array(new_coeffs,dtype=int))
+            
+        coeffs = [ c for degree in coeffs[1:] for c in degree ]
+    
+        coeffs_lowdim = np.array([ [ list(c).count(i) for i in range(dim) ] for c in coeffs ])
+        def Fourier(X):
+            Xc = 2 * np.pi* (X - center) / width
+            vals = np.ones((len(Xc),2*len(coeffs_lowdim)+1))
+            for j,x in enumerate(Xc):
+                for i,c in enumerate(coeffs_lowdim):
+                    vals[j,2*i+1] = np.cos( x.dot(c))
+                    vals[j,2*i+2] = np.sin( x.dot(c))
+            return vals
+        return Fourier 
+    
+    fourierX = fourierX_basis(dim,order_x,center_x,width_x)
+    polyV = polyV_basis(dim,order_v)
+    
+    def fourierX_polyV(X,V):
+        fX = fourierX(X)
+        pV = polyV(V)
+        return np.reshape(np.einsum('ia,ib->iab',fX,pV),(fX.shape[0],fX.shape[1]*pV.shape[1]))
+        
+    return fourierX_polyV 
 
 ### INTERACTING PARTICLES ###
 def particles_pair_interaction(dim,kernels):

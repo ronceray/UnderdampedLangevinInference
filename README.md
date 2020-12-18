@@ -5,15 +5,15 @@ UnderdampedLangevinInference is a package aimed at inferring the
 deterministic and stochastic contributions of underdamped stochastic processes (underdamped Langevin dynamics). 
 
 **Reference**: 
-    David Brückner, Pierre Ronceray and Chase Broedersz, 
-    "*Inferring the dynamics of underdamped stochastic systems*", 2020.
-    https://arxiv.org/abs/2002.06680
+    David BrÃ¼ckner, Pierre Ronceray and Chase Broedersz, 
+    "*Inferring the dynamics of underdamped stochastic systems*", Phys. Rev. Lett. 125, 058103 (2020).
+    https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.058103
 
-**Authors**: Pierre Ronceray and David Brückner. 
+**Authors**: Pierre Ronceray and David BrÃ¼ckner. 
 
 **Contact**: pierre.ronceray@outlook.com or d.brueckner@campus.lmu.de
 
-Web page: www.pierre-ronceray.net.
+**Website**: www.pierre-ronceray.net and www.davidbrueckner.de
 
 See also **StochasticForceInference**, the overdamped (Brownian dynamics) equivalent of this package: https://github.com/ronceray/StochasticForceInference
 

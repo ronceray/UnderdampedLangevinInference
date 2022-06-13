@@ -11,7 +11,7 @@ deterministic and stochastic contributions of underdamped stochastic processes (
 
 **Authors**: Pierre Ronceray and David Brückner. 
 
-**Contact**: pierre.ronceray@outlook.com or d.brueckner@campus.lmu.de
+**Contact**: pierre.ronceray@outlook.com or david.brueckner@ist.ac.at
 
 **Website**: www.pierre-ronceray.net and www.davidbrueckner.de
 

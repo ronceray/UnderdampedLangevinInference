@@ -64,7 +64,11 @@ Developed in Python 3.6. Dependencies:
    of the author.
 
 **ULI_demo_VdP.py**: a fully commented example of force and diffusion
-   inference on the example of 1D non-linear oscillator. **Start here!**	       
+   inference on the example of 1D non-linear oscillator. **Start here!**
+   
+**ULI_demo_VdP.py**: a fully commented example of force, interaction and diffusion
+   inference on the example of experimental data of two interacting migrating cells.
+   For this, download Dataset_S01.txt from https://www.pnas.org/doi/10.1073/pnas.2016602118, add it into your directory and hit run! **Check this if you want to get started on experimental data!**
    
 -----------------------------------------------------------------------
 

@@ -8,8 +8,10 @@ Reference:
     David Brückner, Pierre Ronceray and Chase Broedersz
     Inferring the dynamics of underdamped stochastic systems
 
-This is a demo on using experimental data of interacting cell pairs.
-
+This is a demo on using experimental data of interacting cell pairs from this reference:
+    D. B. Brückner,  N. Arlt, A. Fink, P. Ronceray, J. O. Rädler, C. P. Broedersz
+    Learning the dynamics of cell-cell interactions in confined cell migration 
+    PNAS 118:e2016602118, 2021 
 """
 
 # Import the package:
@@ -21,7 +23,7 @@ import matplotlib.pyplot as plt
 
 #read in Dataset_S01 from https://www.pnas.org/doi/10.1073/pnas.2016602118#supplementary-materials
 trajectories = np.loadtxt('pnas.2016602118.sd01.txt')
-Ntrajectories = trajectories.shape[0]/2
+Ntrajectories = int(trajectories.shape[0]/2)
 
 delta_t_expt = 1/6 #in hours
 factor_divide = 50 #in microns
@@ -29,7 +31,7 @@ factor_divide = 50 #in microns
 X = []
 X_divided = []
 T = []
-for j_system in range(0,3):#Ntrajectories-1):
+for j_system in range(0,Ntrajectories-1):
     xlist_system = trajectories[j_system*2:j_system*2+2,:]
     
     #plot an example trajectory

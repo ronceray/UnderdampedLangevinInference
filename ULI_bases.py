@@ -27,6 +27,8 @@ def basis_selector(basis,data):
             funcs = aligning_self_propelled_particles_basis(basis['order'],basis['kernels'])
         elif basis['type'] == 'aligning_flock': 
             funcs = aligning_flock_basis(basis['order'],basis['kernels'],data.d,basis['translation_invariant'])
+        elif basis['type'] == 'twocell_alignment_cohesion': 
+            funcs = twocell_alignment_cohesion_basis(basis['functions_single'],basis['kernels_cohesion'],basis['kernels_alignment'],data.d)
         else:
             raise KeyError("Unknown basis type.") 
     return funcs,is_interacting
@@ -262,4 +264,22 @@ def aligning_flock_basis(order_single,kernels,dim,translation_invariant):
     return lambda X,V :  np.array([ v for v in poly(X,V).T ]+[ v for v in pair_align(X,V).T ] ).T
 
 
+def twocell_alignment_cohesion_basis(functions_single,kernels_cohesion,kernels_alignment,dim):
+    # A basis adapted to 2D self-propelled particles without alignment
+
+    def pair_align(X,V):
+        # X is a Nparticles x dim - shaped array.
+        Nparticles = X.shape[0]
+        Xij = np.array([[ Xi - Xj for j,Xj in enumerate(X) ] for i,Xi in enumerate(X) ])
+        Vij = np.array([[ Vi - Vj for j,Vj in enumerate(V) ] for i,Vi in enumerate(V) ])
+        Rij = np.linalg.norm(Xij,axis=2)
+        f_Rij_cohesion = np.nan_to_num(np.array([ f(Rij) for f in kernels_cohesion ]))
+        f_Rij_alignment = np.nan_to_num(np.array([ f(Rij) for f in kernels_alignment ]))
+        # Combine the kernel index f and the spatial index m into a
+        # single function index a:
+        fX_i = np.einsum('fij,ijm->fim',f_Rij_cohesion,Xij)
+        fV_i = np.einsum('fij,ijm->fim',f_Rij_alignment,Vij)
+        return np.einsum('fim->ifm', np.array([ x for x in fX_i]+[ v for v in fV_i])).reshape((Nparticles, (2*dim) * len(kernels_cohesion)))
+    
+    return lambda X,V :  np.array([ v for v in functions_single(X,V).T ]+[ v for v in pair_align(X,V).T ] ).T
  

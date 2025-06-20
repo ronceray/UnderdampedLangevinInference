@@ -1,6 +1,8 @@
 # UnderdampedLangevinInference	
 
-
+---
+This package is now DEPRECATED as it has been merged with StochasticForceInference. 
+---
 UnderdampedLangevinInference is a package aimed at inferring the 
 deterministic and stochastic contributions of underdamped stochastic processes (underdamped Langevin dynamics). 
 

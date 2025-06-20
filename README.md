@@ -1,7 +1,7 @@
 # UnderdampedLangevinInference	
 
 ---
-This package is now DEPRECATED as it has been merged with StochasticForceInference. 
+This package is now DEPRECATED as it has been merged with StochasticForceInference. See: https://github.com/ronceray/StochasticForceInference for an up-to-date, more powerful, faster and more flexible version of the package. The code here is left as a companion to the 2020 paper.
 ---
 UnderdampedLangevinInference is a package aimed at inferring the 
 deterministic and stochastic contributions of underdamped stochastic processes (underdamped Langevin dynamics). 
@@ -12,10 +12,6 @@ deterministic and stochastic contributions of underdamped stochastic processes (
     https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.058103
 
 **Authors**: Pierre Ronceray and David Brückner. 
-
-**Contact**: pierre.ronceray@outlook.com or david.brueckner@ist.ac.at
-
-**Website**: www.pierre-ronceray.net and www.davidbrueckner.de
 
 See also **StochasticForceInference**, the overdamped (Brownian dynamics) equivalent of this package: https://github.com/ronceray/StochasticForceInference
 
